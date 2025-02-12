@@ -6,6 +6,11 @@ body {
   background-color: #fff0f6;
   margin: 0;
   padding: 0;
+  background-color: pink;
+  background-image: url('./hearts.png');
+  background-repeat: repeat-y; /* Repeat the image vertically */
+  background-size: 100% auto; /* Scale the image width to 100% of the screen */
+  background-position: top center; /* Ensure it aligns at the top */
 }
 
 .container {
