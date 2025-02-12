@@ -25,7 +25,7 @@
           <li><strong>Mystery Gift:</strong> A normal mystery gift.</li>
           <li><strong>Delicious Dessert:</strong> A sweet treat to end the evening.</li>
         </ul>
-        <button id="package-1">Select Gift Package 1</button>
+        <button id="package-1" class="package-btn">Select Gift Package 1</button>
       </div>
 
       <div class="package-option">
@@ -36,9 +36,12 @@
           <li><strong>Mystery Gift:</strong> A high-value mystery gift.</li>
           <li><strong>Delicious Dessert:</strong> A sweet treat to end the evening.</li>
         </ul>
-        <button id="package-2">Select Gift Package 2</button>
+        <button id="package-2" class="package-btn">Select Gift Package 2</button>
       </div>
     </div>
+
+    <!-- Message Section -->
+    <div id="message-container" class="message"></div>
 
     <p>Love you so much xoxo</p>
   </div>
@@ -47,6 +50,27 @@
     <source src="endmusic.mp3" type="audio/mpeg">
   </audio>
   
-  <script src="success.js"></script>
+  <script>
+    // JavaScript for Package Selection
+    const messageContainer = document.getElementById("message-container");
+
+    document.getElementById("package-1").addEventListener("click", () => {
+      const message = "Selection (Package 1): Fancy flowers huh? Flower girl for real <3";
+      messageContainer.textContent = message;
+      localStorage.setItem("selectedPackage", message);
+    });
+
+    document.getElementById("package-2").addEventListener("click", () => {
+      const message = "Selection (Package 2): I can't use it but I am going to enjoy this gift just as much as you";
+      messageContainer.textContent = message;
+      localStorage.setItem("selectedPackage", message);
+    });
+
+    // Display saved message if it exists
+    const savedMessage = localStorage.getItem("selectedPackage");
+    if (savedMessage) {
+      messageContainer.textContent = savedMessage;
+    }
+  </script>
 </body>
 </html>
