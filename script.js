@@ -109,3 +109,43 @@ function updateTimer() {
 setInterval(updateTimer, 1000);
 
 loadQuestion();
+
+// --- Additional Logic for Success Page ---
+
+if (window.location.pathname.includes("success.html")) {
+  const package1Button = document.getElementById("package-1");
+  const package2Button = document.getElementById("package-2");
+
+  function handlePackageSelection(packageId) {
+    const messages = {
+      "1": "Fancy flowers huh? Flower girl for real <3",
+      "2": "I can't use it but I am going to enjoy this gift just as much as you",
+    };
+
+    // Save the message in localStorage
+    localStorage.setItem("selectedMessage", messages[packageId]);
+
+    // Display the message dynamically
+    const container = document.querySelector(".container");
+    const messageDiv = document.querySelector(".message") || document.createElement("div");
+    messageDiv.className = "message";
+    messageDiv.textContent = messages[packageId];
+    container.appendChild(messageDiv);
+  }
+
+  // Add event listeners for buttons
+  package1Button.addEventListener("click", () => handlePackageSelection("1"));
+  package2Button.addEventListener("click", () => handlePackageSelection("2"));
+
+  // Display the saved message on page load
+  document.addEventListener("DOMContentLoaded", () => {
+    const savedMessage = localStorage.getItem("selectedMessage");
+    if (savedMessage) {
+      const container = document.querySelector(".container");
+      const messageDiv = document.createElement("div");
+      messageDiv.className = "message";
+      messageDiv.textContent = savedMessage;
+      container.appendChild(messageDiv);
+    }
+  });
+}
